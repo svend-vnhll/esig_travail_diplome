@@ -1,0 +1,31 @@
+html {
+    height: 97%;
+    width: 98%;
+    padding: 1%;
+    background-color: darkslategray;
+    overflow: hidden;
+}
+
+body {
+    margin: auto;
+    height: 98%;
+    width: 98%;
+    background-color: lightgray;
+    overflow: hidden;
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+#header {
+    height: 10%;
+    background-color: greenyellow;
+}
+
+#footer {
+    height: 10%;
+    background-color: yellowgreen;
+
+}

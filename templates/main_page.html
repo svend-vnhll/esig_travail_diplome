@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESIG Student Companion</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    <div id="header"> Hey </div>
+    <div id="contents">
+        {% block content %}
+        <div id="events"></div>
+        <div id="menus"></div>
+        <div id="infos_profs"></div>
+        {% endblock %}
+    </div>
+    <div id="footer"></div>
+</body>
+</html>
