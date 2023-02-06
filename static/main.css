@@ -1,15 +1,13 @@
 html {
-    height: 97%;
-    width: 98%;
-    padding: 1%;
     background-color: darkslategray;
     overflow: hidden;
+    margin: 0;
+    height: 100%;
 }
 
 body {
-    margin: auto;
-    height: 98%;
-    width: 98%;
+    margin: 0;
+    height: 100%;
     background-color: lightgray;
     overflow: hidden;
     display: flex;
@@ -20,12 +18,30 @@ body {
 }
 
 #header {
-    height: 10%;
+    height: 5%;
     background-color: greenyellow;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding-top: 5%;
 }
 
 #footer {
     height: 10%;
     background-color: yellowgreen;
+}
 
+#burger {
+    height: 128px;
+    width: 128px;
+}
+
+#profile {
+    background-image: url("/static/img/profile.png");
+    background-size: contain;
+    height: 128px;
+    width: 128px;
+    margin-top: -4%;
 }
