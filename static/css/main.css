@@ -29,7 +29,7 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
     padding-top: 4%;
 }
 
@@ -43,12 +43,12 @@ body {
 
     #header {
         height: 9%;
-        background-color: greenyellow;
+        background-color: cornflowerblue;
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-between;
-        align-items: stretch;
+        align-items: center;
         padding-top: 2%;
     }
 
@@ -59,7 +59,7 @@ body {
 
     #burger {
         position: relative;
-        margin: auto 0 auto 3%;
+        margin: 5% 0 auto 3%;
         height: 128px;
         width: 128px;
 
