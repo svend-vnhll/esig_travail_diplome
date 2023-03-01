@@ -1,0 +1,11 @@
+
+Detect if browser is a mobile device or a PC :
+> https://stackoverflow.com/questions/14942081/detect-if-a-browser-in-a-mobile-device-ios-android-phone-tablet-is-used
+
+Code used to set the burger menu animation :
+> https://codepen.io/designcouch/pen/ExvwPY
+
+Toggle a class to an element (JavaScript) :
+> https://www.w3schools.com/howto/howto_js_toggle_class.asp
+
+
