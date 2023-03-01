@@ -39,10 +39,12 @@ body {
         height: 150px;
         width: 150px;
         margin: auto 3% auto 0;
+        background-color: whitesmoke;
+        border-radius: 100px;
     }
 
     #header {
-        height: 9%;
+        height: 12%;
         background-color: cornflowerblue;
         display: flex;
         flex-direction: row;
@@ -59,7 +61,7 @@ body {
 
     #burger {
         position: relative;
-        margin: 5% 0 auto 3%;
+        margin: 3% 0 auto 3%;
         height: 128px;
         width: 128px;
 
