@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ESIG Student Companion</title>
+</head>
+
+<body>
+  <div id="header">
+    <div id="burger" (click)="showBurgerMenu()">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+    <div id="burger_menu" (click)="showBurgerMenu()">
+      <div routerLink="/"><br>Accueil<br><br></div>
+      <div id="nav_horaire" style="visibility: hidden;" routerLink="/horaire"><br>Horaires<br><br></div>
+      <div id="nav_absence" style="visibility: hidden;" routerLink="/absence"><br>Absences<br><br></div>
+      <div id="nav_bulletin" style="visibility: hidden;" routerLink="/bulletin"><br>Bulletin<br><br></div>
+    </div>
+    <div style="text-align: center;">
+      <span id="title">STUDENT COMPANION</span><br><br>
+      <span id="logged">Loggé : </span>
+    </div>
+    <img (click)="showProfileMenu()" id="profile" src="../assets/img/profile.png" alt="profile_icon" />
+    <div id="profile_menu" (click)="showProfileMenu()">
+      <div routerLink="/signin"><br>Inscription<br><br></div>
+      <div routerLink="/login"><br>Connexion<br><br></div>
+      <div (click)="killCookies()"><br>Déconnexion<br><br></div>
+      <div id="nav_admin" routerLink="/admin"><br>Administration<br></div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+
+  <div id="footer">
+    <span>ESIG 2023 - TD - Svend VAN HOLLEBEKE</span>
+  </div>
+
+</body>
+
+
+
+
+</html>

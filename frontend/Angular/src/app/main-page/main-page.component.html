@@ -1,0 +1,24 @@
+<div id="search_publi">
+    <select id="search" (change)="sortPubli()">
+        <option>Tous</option>
+        <option>Annonces</option>
+        <option>Evenements</option>
+        <option>Absences</option>
+    </select>
+</div>
+<div id="contents">
+    <div id="publications_list">
+        <div *ngFor="let p of publications" class="div_publi">
+            <div class="entete_publi">
+                <div class="titre">{{ p.titre }}</div><br><br>
+                <div class="tag">{{ p.tag }}</div>
+            </div>
+            <div class="contenu">{{ p.contenu }}</div><br><br>
+            <div class="pied_publi">
+                <div class="auteur">Rédigé par {{ p.auteur }}, le {{ p.date }}</div>
+                <button class="btn_delpubli" (click)="deletePublication(p.id)" style="visibility: hidden;">Supprimer
+                    publication</button>
+            </div>
+        </div>
+    </div>
+</div>

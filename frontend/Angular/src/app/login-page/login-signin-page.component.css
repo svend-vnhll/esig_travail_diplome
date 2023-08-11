@@ -1,0 +1,49 @@
+#content {
+    height: 35em;
+    background-color: white;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+form {
+    margin: 3em auto;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+form input {
+    margin-top: 0.5em;
+    font-size: large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+button {
+    font-size: medium;
+    font-weight: bold;
+    color: whitesmoke;
+    padding: 7px;
+    background-color: cornflowerblue;
+    border-radius: 12px;
+    border: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+}
+
+#title {
+    border-top: solid darkslategray 7px;
+    border-bottom: solid darkslategray 7px;
+    color: darkslategray;
+    font-size: 160%;
+    font-weight: bold;
+    padding: 20px;
+    margin: auto 0 auto 0;
+    background-color: gainsboro;
+    text-align: center;
+}
+
+#span_msg_perso:hover {
+    cursor: pointer;
+}

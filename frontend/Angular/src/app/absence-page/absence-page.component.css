@@ -1,0 +1,26 @@
+#conf_semestre {
+    padding: 0.5em 0 0.5em 0;
+    background-color: white;
+    text-align: center;
+    font-size: x-large;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-top: solid 3px darkslategray;
+    border-bottom: solid 3px darkslategray;
+}
+
+#conf_semestre input,
+#conf_semestre select {
+    background-color: white;
+    text-align: center;
+    font-size: x-large;
+    border: solid 1.5px lightskyblue;
+    margin: 0 2em 0 0;
+}
+
+#gest_absences {
+    height: 50em;
+}

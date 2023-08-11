@@ -1,0 +1,89 @@
+<div id="nav">
+    <div (click)="showCours()">Cours</div>
+    <div (click)="showPubli()">Publications</div>
+</div>
+<div id="content"><br>
+    <div id="cours_panel" style="visibility: visible;">
+        <div id="list_cours">
+            <div id="header_cours">
+                <div>Nom</div>
+                <div>Code</div>
+                <div>Module</div>
+                <div>Semestre</div>
+                <div>Coef.</div>
+                <div>Actions</div>
+            </div>
+            <div *ngFor="let c of cours" class="div_cours">
+                <div id="nom{{ c.id }}">{{ c.nom }}</div>
+                <div id="code{{ c.id }}">{{ c.code }}</div>
+                <div id="module{{ c.id }}">{{ c.module }}</div>
+                <div id="semestre{{ c.id }}">{{ c.semestre }}</div>
+                <div id="coefficient{{ c.id }}">{{ c.coefficient }}</div>
+                <div><button (click)="deleteCours(c.id)">SUPP</button><button (click)="editCours(c.id)">EDIT</button>
+                </div>
+            </div>
+
+
+        </div>
+        <div id="form_cours">
+            <div id="title_creer_cours" style="border-bottom: 5px solid azure; 
+            font-weight: bolder; font-size: 130%; font-family: Verdana, Geneva, Tahoma, sans-serif; 
+            height: auto; padding: 3px;">Créer un cours</div>
+            <form><br>
+                <div><label>Nom : </label><input id="cou_nom" [(ngModel)]="cou_nom" name="cou_nom" type="text"
+                        placeholder="Nouveau Cours" required></div><br>
+                <div><label>Code : </label><input id="cou_code" [(ngModel)]="cou_code" name="cou_code" type="text"
+                        required maxlength="5" placeholder="NOUV"></div><br>
+                <div><label>Module : </label><input id="cou_module" [(ngModel)]="cou_module" name="cou_module"
+                        type="text" required placeholder="Introduction"></div><br>
+                <div><label>Semestre : </label><input id="cou_semestre" [(ngModel)]="cou_semestre" name="cou_semestre"
+                        type="number" min="1" max="4" required placeholder="1"></div><br>
+                <div><label>Coefficient : </label><input id="cou_coefficient" [(ngModel)]="cou_coefficient"
+                        name="cou_coefficient" type="number" min="1" max="9" required placeholder="1"></div>
+                <br><br><br>
+            </form>
+            <div id="form_actions">
+                <button (click)="saveCours()">Enregistrer</button>
+                <button (click)="clearInputs()">Effacer</button>
+            </div><br><br>
+            <div (click)="closeError()" id="msg_perso" style="border: 2px solid gray; 
+                border-radius: 6px; font-weight: bolder; 
+                font-size: 110%; font-family: Verdana, Geneva, Tahoma, sans-serif; 
+                width: 18em; margin: auto; height: auto; padding: 3px;" hidden="true">
+                <span id="span_msg_perso"></span>
+            </div>
+        </div>
+    </div>
+    <div id="publi_panel" style="visibility: hidden;">
+        <div id="form_publi">
+            <div style="border-bottom: 5px solid azure; 
+            font-weight: bolder; font-size: 130%; font-family: Verdana, Geneva, Tahoma, sans-serif; 
+            height: auto; padding: 3px;">Ajouter une publication</div>
+            <form><br>
+                <div><label>Titre : </label><input [(ngModel)]="titre_publi" name="titre_publi" type="text"
+                        placeholder="Titre publication" required>
+                    <select id="sel_tag">
+                        <option>Annonce</option>
+                        <option>Absence</option>
+                        <option>Evenement</option>
+                    </select>
+                </div><br>
+                <div><label>Contenu : </label><textarea id="input_publi" [(ngModel)]="contenu_publi"
+                        name="contenu_publi" cols="40" rows="5" required maxlength="600"
+                        placeholder="Contenu publication"></textarea></div>
+                <br>
+                <br><br><br>
+            </form>
+            <div id="form_actions">
+                <button (click)="savePubli()">Enregistrer</button>
+                <button (click)="clearInputs()">Effacer</button>
+            </div><br><br>
+            <div (click)="closeError()" id="msg_perso" style="border: 2px solid gray; 
+                border-radius: 6px; font-weight: bolder; 
+                font-size: 110%; font-family: Verdana, Geneva, Tahoma, sans-serif; 
+                width: 18em; margin: auto; height: auto; padding: 3px;" hidden="true">
+                <span id="span_msg_perso"></span>
+            </div>
+        </div>
+    </div>
+</div>

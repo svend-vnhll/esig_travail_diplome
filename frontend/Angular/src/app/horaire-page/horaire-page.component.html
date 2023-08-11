@@ -1,0 +1,45 @@
+<div id="title">
+    Horaire Semestre
+    <select id="semestre" (change)="loadAll()">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+    </select>
+</div>
+<div id="horaire">
+    <div id="tete_lgn">
+        <div></div>
+        <div class="h1">08:15-09:00</div>
+        <div class="h2">09:05-09:50</div>
+        <div class="h3">10:10-10:55</div>
+        <div class="h4">11:00-11:45</div>
+        <div class="h5">11:50-12:35</div>
+        <div class="h6">12:40-13:25</div>
+        <div class="h7">13:45-14:30</div>
+        <div class="h8">14:35-15:20</div>
+        <div class="h9">15:35-16:20</div>
+        <div class="h10">16:25-17:10</div>
+        <div class="h11">17:15-18:00</div>
+        <div class="h12">18:05-18:50</div>
+    </div>
+    <div [attr.id]="jour.toLowerCase()" *ngFor="let jour of jours; let i = index">
+        <div [attr.class]="jour.toLowerCase()">{{ jour }}</div>
+        <div [attr.id]="(jour.slice(0, 3).toLowerCase() + heure.toLowerCase())"
+            *ngFor="let heure of heures; let c = index">
+            <select (change)="changeHoraire(jour.slice(0, 3).toLowerCase() + heure.toLowerCase())"
+                [attr.class]="(jour.slice(0, 3).toLowerCase() + '_select')"
+                [attr.id]="(jour.slice(0, 3).toLowerCase() + heure.toLowerCase() + '_select')">
+                <option></option>
+                <option *ngFor="let c of cours">{{ c.code }}</option>
+            </select>
+            <select style="visibility: hidden;"
+                (change)="changeSalle(jour.slice(0, 3).toLowerCase() + heure.toLowerCase())"
+                [attr.class]="(jour.slice(0, 3).toLowerCase() + '_salle')"
+                [attr.id]="(jour.slice(0, 3).toLowerCase() + heure.toLowerCase() + '_salle')">
+                <option></option>
+                <option *ngFor="let s of salles">{{ s }}</option>
+            </select>
+        </div>
+    </div>
+</div>

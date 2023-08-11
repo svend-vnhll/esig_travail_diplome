@@ -1,0 +1,22 @@
+<div id="title">Inscription Utilisateur</div>
+<div id="content">
+    <form>
+        <label>E-mail EDUGE</label><br>
+        <input type="text" [(ngModel)]="email" name="email" maxlength="64" required placeholder="abcd.defg@eduge.ch">
+        <br><br>
+        <label>Mot de passe</label><br>
+        <input type="password" [(ngModel)]="password" name="password" minlength="8" maxlength="64" required>
+        <br><br>
+        <a (click)="signin()"><button type="button">Inscription</button></a><span> - </span>
+        <button type="button" routerLink="/">Annuler</button>
+    </form>
+    <div (click)="closeError()" id="msg_perso" style="border: 2px solid gray; 
+        border-radius: 6px; font-weight: bolder; 
+        font-size: 110%; font-family: Verdana, Geneva, Tahoma, sans-serif; 
+        width: 18em; margin: auto; height: auto; padding: 3px;" hidden="true">
+        <span id="span_msg_perso"></span>
+    </div>
+    <br>
+
+    <a routerLink="/login">Déjà inscrit ?</a>
+</div>

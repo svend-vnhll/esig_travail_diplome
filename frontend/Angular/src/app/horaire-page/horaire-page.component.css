@@ -1,0 +1,149 @@
+/* Styles pour les écrans d'ordinateur */
+@media screen and (min-width: 768px) {
+    #title {
+        text-align: center;
+        font-size: xx-large;
+    }
+
+    #title select {
+        text-align: center;
+        width: 3em;
+        font-size: xx-large;
+    }
+
+    #horaire {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: stretch;
+        margin: 3em 0 3em 0;
+    }
+
+    #tete_lgn div,
+    #lundi div,
+    #mardi div,
+    #mercredi div,
+    #jeudi div,
+    #vendredi div {
+        height: 3.2em;
+        width: 100%;
+        border: solid black 2px;
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #tete_lgn,
+    #mardi,
+    #jeudi,
+    #mardi select,
+    #jeudi select,
+    #mardi input,
+    #jeudi input {
+        width: 100%;
+        background-color: aliceblue;
+    }
+
+    #lundi,
+    #mercredi,
+    #vendredi,
+    #lundi select,
+    #mercredi select,
+    #vendredi select,
+    #lundi input,
+    #mercredi input,
+    #vendredi input {
+        width: 100%;
+        background-color: lightblue;
+    }
+
+    #tete_lgn div,
+    .lundi,
+    .mardi,
+    .mercredi,
+    .jeudi,
+    .vendredi {
+        font-weight: bolder;
+    }
+
+    #horaire select {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        font-size: large;
+        font-weight: bolder;
+    }
+}
+
+/* Styles pour les écrans de téléphone portable */
+@media screen and (max-width: 767px) {
+    #title {
+        text-align: center;
+        font-size: x-large;
+    }
+
+    #title select {
+        text-align: center;
+        width: 3em;
+        font-size: x-large;
+    }
+
+    #horaire {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: stretch;
+        margin: 1em 0 1em 0;
+        font-size: x-small;
+    }
+
+    #tete_lgn,
+    #mardi,
+    #jeudi,
+    #mardi select,
+    #jeudi select {
+        width: 100%;
+        background-color: aliceblue;
+    }
+
+    #lundi,
+    #mercredi,
+    #vendredi,
+    #lundi select,
+    #mercredi select,
+    #vendredi select {
+        width: 100%;
+        background-color: lightblue;
+    }
+
+    #tete_lgn div,
+    #lundi div,
+    #mardi div,
+    #mercredi div,
+    #jeudi div,
+    #vendredi div {
+        height: 3em;
+        width: 100%;
+        border: solid black 1px;
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #horaire select {
+        height: 100%;
+        width: 100%;
+        text-align: left;
+        font-size: xx-small;
+        font-weight: bolder;
+    }
+
+}

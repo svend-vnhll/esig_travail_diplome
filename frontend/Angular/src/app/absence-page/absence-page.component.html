@@ -1,0 +1,32 @@
+<div id="conf_semestre" (change)="editingSemestre()">
+    <div>Semestre : <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+        Dates : <input type="date" (change)="editingSemestre()"> au <input type="date" (change)="editingSemestre()">
+    </div>
+    <img (click)="saveSemestre()" id="save_logo" style="height: 2em; background-color: white;"
+        src="../assets/img/saved.png" alt="profile_icon">
+</div>
+<div id="gest_absences">
+    <div>
+        <button (click)="navPrevWeek()">Gauche</button>
+        <button (click)="navNextWeek()">Droite</button>
+    </div>
+
+    <div>
+        Semaine {{ str_today }} du {{ str_weekStartDate }} au {{ str_weekEndDate }}
+    </div>
+
+    <div>
+        <ul>
+            <li *ngFor="let day of formattedWeekDays; let i = index">
+                {{ day }}
+            </li>
+        </ul>
+    </div>
+
+
+</div>

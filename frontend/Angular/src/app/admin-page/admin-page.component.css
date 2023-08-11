@@ -1,0 +1,377 @@
+/* Styles pour les écrans d'ordinateur */
+@media screen and (min-width: 768px) {
+    #content {
+        height: 35em;
+        background-color: white;
+        text-align: center;
+    }
+
+    #nav {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 2em;
+        width: 100%;
+    }
+
+    #nav div {
+        border: solid darkslategray 1px;
+        border-top: solid darkslategray 7px;
+        border-bottom: solid darkslategray 7px;
+        color: darkslategray;
+        font-size: 120%;
+        font-weight: bold;
+        margin: auto;
+        width: 50%;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #title {
+        border-top: solid darkslategray 3.5px;
+        border-bottom: solid darkslategray 3.5px;
+        color: darkslategray;
+        font-size: 160%;
+        font-weight: bold;
+        padding: 5px;
+        margin: auto 0 auto 0;
+        background-color: gainsboro;
+        text-align: center;
+    }
+
+    #cours_panel {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 78%;
+        height: 33em;
+        margin: auto;
+    }
+
+    #list_cours {
+        background-color: lightblue;
+        overflow-y: auto;
+        border-right: solid white 3px;
+        width: 68%;
+        padding-top: 1em;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    #header_cours,
+    .div_cours {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 0.5em;
+    }
+
+    #header_cours div,
+    .div_cours div {
+        background-color: azure;
+        padding: 0.3em;
+        width: 100%;
+        height: 2.5em;
+    }
+
+    #header_cours {
+        background-color: azure;
+        font-size: large;
+        font-weight: bold;
+    }
+
+    #header_cours div {
+        padding: 0.5em;
+    }
+
+    .div_cours div button {
+        font-weight: bold;
+        height: 100%;
+        width: 50%;
+        cursor: pointer;
+    }
+
+    #form_cours {
+        background-color: lightblue;
+        width: 30%;
+        border-left: solid white 3px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: stretch;
+
+        font-size: 110%;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    form div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: stretch;
+        margin-right: 0.5em;
+        margin-left: 0.5em;
+    }
+
+    form div label {
+        margin-left: 1em;
+    }
+
+    input,
+    textarea,
+    #form_actions button {
+        height: 2.2em;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    #form_actions button {
+        font-size: large;
+        cursor: pointer;
+    }
+
+    #form_actions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    #publi_panel {
+        background-color: lavender;
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        width: 77.5%;
+        height: 33em;
+        margin: auto;
+    }
+
+    #form_publi {
+        margin: 1.5em auto 1em auto;
+        width: 75%;
+        padding: 1em 5em 0 5em;
+    }
+
+    #form_publi label {
+        margin-right: 15px;
+    }
+
+    #form_publi input {
+        width: 70%;
+    }
+
+    #form_publi textarea {
+        width: 80%;
+    }
+
+    #input_publi {
+        height: 15em;
+        resize: none;
+    }
+
+}
+
+/* Styles pour les écrans de téléphone portable */
+@media screen and (max-width: 767px) {
+    #content {
+        height: 35em;
+        background-color: white;
+        text-align: center;
+        overflow-y: auto;
+    }
+
+    #nav {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        height: 2em;
+        width: 100%;
+    }
+
+    #nav div {
+        border: solid darkslategray 1px;
+        border-top: solid darkslategray 2px;
+        border-bottom: solid darkslategray 2px;
+        color: darkslategray;
+        background-color: white;
+        font-size: 120%;
+        font-weight: bold;
+        margin: auto;
+        width: 50%;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    #cours_panel {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 95%;
+        height: 50em;
+        margin: auto;
+        overflow-y: auto;
+    }
+
+    #list_cours {
+        background-color: lightblue;
+        overflow-y: auto;
+        border-right: solid white 3px;
+        width: 100%;
+        height: 100em;
+        padding-top: 1em;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    #header_cours,
+    .div_cours {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 0.5em;
+        font-size: x-small;
+    }
+
+    #header_cours div,
+    .div_cours div {
+        background-color: azure;
+        padding: 0.1em;
+        width: 100%;
+        height: 2.5em;
+    }
+
+    #header_cours {
+        background-color: azure;
+        font-size: small;
+        font-weight: bold;
+    }
+
+    #header_cours div {
+        padding: 0.1em;
+    }
+
+    .div_cours div button {
+        font-weight: bold;
+        font-size: xx-small;
+        height: 100%;
+        width: 50%;
+    }
+
+    #form_cours {
+        background-color: lightblue;
+        width: 100%;
+        border-left: solid white 3px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: stretch;
+
+        font-size: 110%;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    form div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: stretch;
+        margin-right: 0.5em;
+        margin-left: 0.5em;
+    }
+
+    form div label {
+        margin-left: 1em;
+    }
+
+    input,
+    #form_actions button {
+        height: 2.2em;
+        font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    #form_actions button {
+        font-size: large;
+    }
+
+    #form_actions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        align-items: self-start;
+    }
+
+
+    #publi_panel {
+        background-color: lavender;
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 77.5%;
+        height: 33em;
+        margin: auto;
+        top: 18%;
+    }
+
+    #form_publi {
+        margin: 1.5em auto 1em auto;
+        width: 75%;
+        padding: 1em 5em 0 5em;
+    }
+
+    #form_publi label {
+        margin-right: 15px;
+    }
+
+    #form_publi input {
+        width: 50em;
+    }
+
+    #form_publi textarea {
+        width: 55em;
+    }
+
+    #input_publi {
+        height: 15em;
+        resize: none;
+    }
+
+}
