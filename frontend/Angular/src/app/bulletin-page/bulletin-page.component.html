@@ -1,0 +1,47 @@
+<div id="title">
+    <div>Bulletin Semestre
+        <select id="semestre" (change)="loadAll()">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+    </div>
+
+    <div>Moyenne Semestre :
+        <input id="semestre_moy" type="number" min="1" max="6" maxlength="1" disabled style="background-color: white; ">
+    </div>
+
+    <img id="save_logo" (click)="saveBulletin()" style="height: 2em; background-color: white;"
+        src="../assets/img/saved.png" alt="profile_icon">
+</div>
+<div id="bulletin">
+    <div *ngFor="let module of modules" id="module">
+        <h2 style="border: solid black 2px; background-color: lightcyan; padding-left: 1.5em;">{{ module.nom }}</h2>
+        <div class="cours" *ngFor="let cours of module.cours">
+            <div class="code_cours">{{ cours.code }} (Coef. {{ cours.coefficient }})</div>
+            <div class="ER">
+                <div class="ER1">ER 1 Note:
+                    <input inputmode="numeric" class="note_er1" (change)="editNote(cours.code + '_ER1' + '_note')"
+                        [attr.id]="(cours.code + '_ER1' + '_note')" type="number" min="1" max="6" maxlength="1"
+                        value="4">
+                </div>
+                <div>Coefficient: <input inputmode="numeric" [attr.id]="(cours.code + '_ER1' + '_coef')"
+                        (change)="editNote(cours.code + '_ER1' + '_coef')" type="number" min="1" max="6" maxlength="1"
+                        value="1"></div>
+            </div>
+            <div class="ER">
+                <div class="ER2">ER 2 Note:
+                    <input inputmode="numeric" class="note_er2" (change)="editNote(cours.code + '_ER2' + '_note')"
+                        [attr.id]="(cours.code + '_ER2' + '_note')" type="number" min="1" max="6" maxlength="1"
+                        value="4">
+                </div>
+                <div>Coefficient: <input inputmode="numeric" [attr.id]="(cours.code + '_ER2' + '_coef')"
+                        (change)="editNote(cours.code + '_ER2' + '_coef')" type="number" min="1" max="6" maxlength="1"
+                        value="1"></div>
+            </div>
+            <div>Moyenne : <input inputmode="numeric" [attr.id]="(cours.code + '_moy')" type="number" min="1" max="6"
+                    maxlength="1" disabled></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+/* Styles pour les écrans d'ordinateur */
+@media screen and (min-width: 768px) {
+    #title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        font-size: xx-large;
+    }
+
+    #title select {
+        text-align: center;
+        width: 3em;
+        font-size: xx-large;
+    }
+
+    #bulletin {
+        background-color: white;
+        padding-bottom: 3em;
+        overflow-y: auto;
+        height: 47em;
+    }
+
+    .ER {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-end;
+    }
+
+    .cours {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        border-top: solid gray 2px;
+        text-align: center;
+        padding: 1em 0 1em 0;
+    }
+
+    .code_cours {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: larger;
+        font-weight: bold;
+        margin-left: -3em;
+    }
+
+    input {
+        height: 2em;
+        text-align: center;
+        font-size: large;
+        border: 0.5px lightskyblue double;
+    }
+
+}
+
+/* Styles pour les écrans de téléphone portable */
+@media screen and (max-width: 767px) {
+    #title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        font-size: medium;
+        background-color: white;
+        text-align: center;
+    }
+
+    #title select {
+        text-align: center;
+        width: 3em;
+        font-size: medium;
+    }
+
+    #bulletin {
+        background-color: white;
+        padding-bottom: 3em;
+        overflow-y: auto;
+        height: 35em;
+    }
+
+    h2 {
+        font-size: medium;
+        width: 175%;
+    }
+
+    .ER {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-end;
+    }
+
+    .cours {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        border-top: solid gray 2px;
+        text-align: center;
+        padding: 1em 0 1em 0;
+
+        width: 175%;
+        overflow: auto;
+    }
+
+    .code_cours {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: medium;
+        font-weight: bold;
+    }
+
+    input {
+        height: 1em;
+        text-align: center;
+        font-size: medium;
+        border: 0.5px lightskyblue double;
+    }
+
+    img {
+        border: solid lightskyblue 1px;
+    }
+
+}
