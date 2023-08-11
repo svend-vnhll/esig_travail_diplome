@@ -24,3 +24,40 @@
 #gest_absences {
     height: 50em;
 }
+
+#nav {
+    height: 2.5em;
+    background-color: lightcyan;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#nav button {
+    font-size: large;
+    font-weight: bold;
+}
+
+h2 {
+    margin: 0.5em auto;
+    text-align: center;
+}
+
+.semaine {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.heure {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.heure input {
+    height: 3em;
+}

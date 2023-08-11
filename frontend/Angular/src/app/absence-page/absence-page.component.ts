@@ -17,7 +17,9 @@ export class AbsencePageComponent {
   str_today: string = "";
   str_weekStartDate: string = "";
   str_weekEndDate: string = "";
-  formattedWeekDays: string[] = [];
+  days_fr: string[] = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
+  formattedWeekDays: { dayName: string, date: string }[] = [];
+  heures: any[] = ["H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12"]
   change: boolean = false;
   email: string = "";
 
@@ -29,7 +31,6 @@ export class AbsencePageComponent {
   }
 
   calculWeekDates() {
-    console.log(this.currentWeek);
     this.weekStartDate = startOfWeek(this.today, { weekStartsOn: 1 });
     this.weekEndDate = endOfWeek(this.today, { weekStartsOn: 1 });
     this.str_weekStartDate = format(this.weekStartDate, 'dd.MM')
@@ -39,8 +40,9 @@ export class AbsencePageComponent {
   calculFormDays() {
     this.formattedWeekDays = [];
     for (let i = 0; i < 5; i++) {
-      const day = addDays(this.weekStartDate, i);
-      this.formattedWeekDays.push(format(day, 'EEEE dd.MM'));
+      const day = addWeeks(this.weekStartDate, this.currentWeek);
+      const formatDate = format(addDays(day, i), 'dd.MM');
+      this.formattedWeekDays.push({ dayName: this.days_fr[i], date: formatDate });
     }
   }
 
@@ -54,6 +56,13 @@ export class AbsencePageComponent {
   navNextWeek() {
     this.today = addWeeks(this.today, 1);
     this.currentWeek = this.currentWeek + 1;
+    this.calculWeekDates();
+    this.calculFormDays();
+  }
+
+  navCurrentWeek() {
+    this.today = new Date();
+    this.currentWeek = getISOWeek(this.today);
     this.calculWeekDates();
     this.calculFormDays();
   }

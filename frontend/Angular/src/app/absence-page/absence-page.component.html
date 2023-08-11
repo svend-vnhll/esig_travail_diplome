@@ -11,22 +11,30 @@
         src="../assets/img/saved.png" alt="profile_icon">
 </div>
 <div id="gest_absences">
-    <div>
-        <button (click)="navPrevWeek()">Gauche</button>
-        <button (click)="navNextWeek()">Droite</button>
+    <div id="nav">
+        <button (click)="navPrevWeek()">Semaine précédente</button>
+        <button (click)="navCurrentWeek()">Revenir à aujourd'hui</button>
+        <button (click)="navNextWeek()">Semaine suivante</button>
     </div>
+    <h2>Semaine du {{ str_weekStartDate }} au {{ str_weekEndDate }}</h2>
 
-    <div>
-        Semaine {{ str_today }} du {{ str_weekStartDate }} au {{ str_weekEndDate }}
+    <div class="semaine" [attr.id]="'sem_' + (str_weekStartDate) + '_' + (str_weekEndDate)">
+        <div [attr.class]="'day_' + (day.dayName)" *ngFor="let day of formattedWeekDays; let i = index">
+            <h3 class="{{ day.dayName }}">{{ day.dayName }} {{ day.date }}</h3>
+            <div class="heure">Présent-e Absent-e Excusé-e</div>
+            <div *ngFor="let heure of heures; let c = index">
+
+                <div class="heure">
+                    <span> {{ heure }}</span>
+                    <input type="radio" id="present" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
+                        value="present" checked style="accent-color: lightgreen;">
+                    <input type="radio" id="abs_exc" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
+                        value="abs_exc" style="accent-color: lightcoral;">
+                    <input type="radio" id="abs_nexc" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
+                        value="abs_nexc" style="accent-color: rgb(248, 209, 110);">
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <ul>
-            <li *ngFor="let day of formattedWeekDays; let i = index">
-                {{ day }}
-            </li>
-        </ul>
-    </div>
-
 
 </div>
