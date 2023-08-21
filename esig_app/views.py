@@ -9,7 +9,7 @@ from rest_framework import generics
 from decimal import Decimal
 
 from .models import *
-from .serializers import CoursSerializer, PublicationSerializer, HorairesSerializer, NotesSerializer
+from .serializers import CoursSerializer, PublicationSerializer, HorairesSerializer, NotesSerializer, SemestreSerializer
 
 
 class CoursList(generics.ListAPIView):
@@ -63,6 +63,15 @@ class HorairesList(generics.ListAPIView):
         semestre = self.request.GET.get('search')
         user_param = self.request.GET.get('user')
         queryset = CoursEleve.objects.filter(cours__semestre__exact=semestre, utilisateur__email__exact=user_param)
+        return queryset
+
+
+class SemestreList(generics.ListAPIView):
+    serializer_class = SemestreSerializer
+
+    def get_queryset(self):
+        email = self.request.GET.get('user')
+        queryset = Semestre.objects.filter(utilisateur__email__exact=email)
         return queryset
 
 
@@ -285,4 +294,41 @@ def change_bulletin(request):
                     except decimal.InvalidOperation:
                         note.resultat = Decimal("4")
                 note.save()
+    return HttpResponse()
+
+
+def save_semestre(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        semestre = data.get('semestre')
+        eleve = Utilisateur.objects.get(email__exact=data.get('eleve'))
+        date_deb = data.get('date_deb')
+        date_fin = data.get('date_fin')
+
+        if Semestre.objects.filter(utilisateur__email__exact=eleve.email, numSemestre__exact=semestre).exists():
+            s = Semestre.objects.get(utilisateur__email__exact=eleve.email, numSemestre__exact=semestre)
+        else:
+            s = Semestre()
+        s.utilisateur = eleve
+        s.numSemestre = semestre
+        s.dateDebut = date_deb
+        s.dateFin = date_fin
+        s.latest = False
+        s.save()
+    return HttpResponse()
+
+
+def change_latest(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        semestre = data.get('semestre')
+        eleve = Utilisateur.objects.get(email__exact=data.get('eleve'))
+        all_semestre = Semestre.objects.filter(utilisateur__email__exact=eleve.email)
+        for s in all_semestre:
+            if s.numSemestre == semestre:
+                s.latest = True
+                s.save()
+            else:
+                s.latest = False
+                s.save()
     return HttpResponse()

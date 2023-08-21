@@ -24,3 +24,9 @@ class NotesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
         fields = ('id', 'resultat', 'coefficient', 'epreuves', 'codeCours', 'utilisateur', 'cours')
+
+
+class SemestreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Semestre
+        fields = ('id', 'numSemestre', 'dateDebut', 'dateFin')

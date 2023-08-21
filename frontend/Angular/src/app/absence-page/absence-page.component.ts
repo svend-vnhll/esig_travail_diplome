@@ -4,6 +4,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoopLoadingBulletin } from '../javascriptfun.js';
 import { getISOWeek, startOfWeek, endOfWeek, format, addWeeks, subWeeks, addDays } from 'date-fns';
 
+import { Semestre } from '../semestre.js'
+
 @Component({
   selector: 'app-absence-page',
   templateUrl: './absence-page.component.html',
@@ -22,6 +24,7 @@ export class AbsencePageComponent {
   heures: any[] = ["H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12"]
   change: boolean = false;
   email: string = "";
+  semestres: Semestre[] = [];
 
   constructor(private http: HttpClient, private elementRef: ElementRef, private cookieService: CookieService, private renderer: Renderer2) {
     this.currentWeek = getISOWeek(this.today);
@@ -75,17 +78,62 @@ export class AbsencePageComponent {
     this.email = this.cookieService.get('email');
     if (this.email == "") {
       window.location.href = "/login";
-
     }
+    this.getSemestreEleve();
   }
 
-  editingSemestre() {
-    let save_logo = this.elementRef.nativeElement.querySelector('#save_logo');
+  getSemestreEleve() {
+    let sem = this.elementRef.nativeElement.querySelector('#semestre').value;
+    const url = 'http://127.0.0.1:8000/api/semestres/';
+    const params = new HttpParams().set('search', sem).set('user', this.email);
+    const options = { params: params, withCredentials: true };
+    this.http.get<Semestre[]>(url, options)
+      .subscribe(data => {
+        this.semestres = data;
+      });
 
-    if (!this.change) {
-      save_logo.src = "../assets/img/tosave.gif";
-      save_logo.style.cursor = "pointer";
-      this.change = !this.change;
+    setTimeout(() => {
+      console.log(this.semestres);
+      this.semestres.forEach(s => {
+        if (s.numSemestre === sem) {
+          this.elementRef.nativeElement.querySelector('#datedeb_input').value = s.dateDebut;
+          this.elementRef.nativeElement.querySelector('#datefin_input').value = s.dateFin;
+        }
+      });
+    }, 1000);
+
+
+
+  }
+
+  editingSemestre(input: string) {
+    let save_logo = this.elementRef.nativeElement.querySelector('#save_logo');
+    let sem = this.elementRef.nativeElement.querySelector('#semestre').value;
+    if (input == "s") {
+      this.semestres.forEach(s => {
+        if (s.numSemestre === sem) {
+          this.elementRef.nativeElement.querySelector('#datedeb_input').value = s.dateDebut;
+          this.elementRef.nativeElement.querySelector('#datefin_input').value = s.dateFin;
+        }
+      });
+    } else {
+      if (!this.change) {
+        save_logo.src = "../assets/img/tosave.gif";
+        save_logo.style.cursor = "pointer";
+        this.change = !this.change;
+        const url = 'http://127.0.0.1:8000/change_latest/';
+
+        const data = {
+          semestre: sem,
+          eleve: this.email,
+        };
+        const options = {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+          withCredentials: true
+        };
+        this.http.post(url, data, options).subscribe;
+
+      }
     }
   }
 
@@ -95,6 +143,27 @@ export class AbsencePageComponent {
       save_logo.src = "../assets/img/saved.png";
       save_logo.style.cursor = "default";
       this.change = !this.change;
+
+      const url = 'http://127.0.0.1:8000/save_semestre/';
+      let sem = this.elementRef.nativeElement.querySelector('#semestre').value;
+
+      const data = {
+        semestre: sem,
+        eleve: this.email,
+        date_deb: this.elementRef.nativeElement.querySelector('#datedeb_input').value,
+        date_fin: this.elementRef.nativeElement.querySelector('#datefin_input').value
+      };
+
+      const options = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        withCredentials: true
+      };
+
+      this.http.post(url, data, options)
+        .subscribe(response => {
+
+        });
+
     }
 
   }

@@ -15,7 +15,7 @@ class Cours(models.Model):
     code = models.CharField(max_length=5, null=False)
     nom = models.CharField(max_length=64, null=False)
     module = models.CharField(max_length=64, null=False)
-    semestre = models.CharField(max_length=16, null=False)
+    semestre = models.CharField(max_length=1, null=False)
     coefficient = models.DecimalField(decimal_places=0, max_digits=1, null=False)
     is_actif = models.BooleanField(null=False)
 
@@ -28,26 +28,27 @@ class Publication(models.Model):
     date = models.DateField(null=False)
 
 
-class Bulletin(models.Model):
-    statut = models.CharField(max_length=32, null=False)
-    semestre = models.CharField(max_length=16, null=False)
-    vollee = models.CharField(max_length=16, null=False)
-
-    utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, null=False)
-
-
-class Memo(models.Model):
-    titre = models.CharField(max_length=32, null=False)
-    details = models.CharField(max_length=600, null=True)
-    type = models.CharField(max_length=32, null=False)
-
-    utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, null=False)
+# class Bulletin(models.Model):
+#     statut = models.CharField(max_length=32, null=False)
+#     semestre = models.CharField(max_length=16, null=False)
+#     vollee = models.CharField(max_length=16, null=False)
+#
+#     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, null=False)
+#
+#
+# class Memo(models.Model):
+#     titre = models.CharField(max_length=32, null=False)
+#     details = models.CharField(max_length=600, null=True)
+#     type = models.CharField(max_length=32, null=False)
+#
+#     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, null=False)
 
 
 class Semestre(models.Model):
     numSemestre = models.CharField(max_length=1,null=False)
     dateDebut = models.CharField(max_length=8, null=False)
     dateFin = models.CharField(max_length=8, null=False)
+    latest = models.BooleanField(null=False)
 
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, null=False)
 
