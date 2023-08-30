@@ -54,9 +54,11 @@ class Semestre(models.Model):
 
 
 class Absence(models.Model):
-    date = models.CharField(max_length=8, null=False)
+    dateAbs = models.CharField(max_length=8, null=False)
     horaire = models.CharField(max_length=3, null=False)
+    jour = models.CharField(max_length=3, null=False)
     semaine = models.CharField(max_length=2, null=False)
+    type = models.CharField(max_length=32, null=True)
 
     semestre = models.ForeignKey(Semestre, on_delete=models.CASCADE, null=False)
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, null=False)

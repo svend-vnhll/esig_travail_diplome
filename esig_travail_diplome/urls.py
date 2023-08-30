@@ -7,6 +7,7 @@ urlpatterns = [
     path('api/horaires/', views.HorairesList.as_view()),
     path('api/notes/', views.NotesList.as_view()),
     path('api/semestres/', views.SemestreList.as_view()),
+    path('api/absences/', views.AbsencesList.as_view()),
     path('checks_if_user_exists/', views.check_new_user),
     path('try_login/', views.try_login),
     #path('checks_session/', views.checks_session),
@@ -18,4 +19,5 @@ urlpatterns = [
     path('change_bulletin/', views.change_bulletin),
     path('save_semestre/', views.save_semestre),
     path('change_latest/', views.change_latest),
+    path('edit_absence/', views.edit_absence),
 ]

@@ -30,3 +30,10 @@ class SemestreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Semestre
         fields = ('id', 'numSemestre', 'dateDebut', 'dateFin')
+
+
+class AbsenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Absence
+        fields = ('id', 'dateAbs', 'horaire', 'jour', 'semaine', 'type', 'semestre', 'utilisateur')
+

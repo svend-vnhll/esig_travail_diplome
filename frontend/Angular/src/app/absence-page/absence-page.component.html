@@ -12,11 +12,16 @@
         src="../assets/img/saved.png" alt="profile_icon">
 </div>
 <div id="gest_absences">
-    <div id="nav">
-        <button (click)="navPrevWeek()">Semaine précédente</button>
-        <button (click)="navCurrentWeek()">Revenir à aujourd'hui</button>
-        <button (click)="navNextWeek()">Semaine suivante</button>
+    <div id="etat_absences">
+        Etat des absences du Semestre
     </div>
+
+    <div id="nav">
+        <button (click)="navPrevWeek()">Semaine préc.</button>
+        <button (click)="navCurrentWeek()">Revenir à aujourd'hui</button>
+        <button (click)="navNextWeek()">Semaine suiv.</button>
+    </div>
+
     <h2>Semaine du {{ str_weekStartDate }} au {{ str_weekEndDate }}</h2>
 
     <div class="semaine" [attr.id]="'sem_' + (str_weekStartDate) + '_' + (str_weekEndDate)">
@@ -26,20 +31,21 @@
             <div *ngFor="let heure of heures; let c = index">
 
                 <div class="heure">
-                    <span style="margin-right: 2em;">{{ heure }}</span>
-                    <input type="radio" id="present" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
-                        value="present" checked style="accent-color: lightgreen; margin-right: 1.5em;">
-                    <input type="radio" id="abs_exc" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
-                        value="abs_exc" style="accent-color: lightcoral; margin-right: 1.5em;">
-                    <input type="radio" id="abs_nexc" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
-                        value="abs_nexc" style="accent-color: rgb(248, 209, 110); margin-right: 1.5em;">
+                    <span style="margin-right: 0.5em;">{{ heure }}</span>
+                    <span [attr.class]="(day.dayName) + '_' + (heure)" style="margin-right: 0.5em;"> COURS </span>
+                    <input type="radio" class="present" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
+                        value="present" checked style="accent-color: lightgreen; margin-right: 1.5em;"
+                        (click)="inputAbsence(day.dayName + '_' + day.date + '_' + heure + '_pres')">
+                    <input type="radio" class="abs_nexc" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
+                        value="abs_nexc" style="accent-color: lightcoral; margin-right: 1.5em;"
+                        (click)="inputAbsence(day.dayName + '_' + day.date + '_' + heure + '_nexc')">
+                    <input type="radio" class="abs_exc" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
+                        value="abs_exc" style="accent-color: rgb(248, 209, 110); margin-right: 1.5em;"
+                        (click)="inputAbsence(day.dayName + '_' + day.date + '_' + heure + '_exc')">
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="etat_absences">
-        Etat des absences du Semestre
-    </div>
 
 </div>

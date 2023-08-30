@@ -357,7 +357,7 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         background-color: aliceblue;
         overflow-y: auto;
-        height: 40em;
+        height: 38em;
     }
 
     #search_publi {
@@ -452,7 +452,7 @@
         border-right: 6px solid darkslategray;
         border-bottom: 6px solid darkslategray;
         border-radius: 5px;
-        height: 20em;
+        height: 5em;
         width: 15em;
         top: 13%;
         left: 3%;

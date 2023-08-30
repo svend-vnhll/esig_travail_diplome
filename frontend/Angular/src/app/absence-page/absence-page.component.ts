@@ -2,9 +2,11 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { LoopLoadingBulletin } from '../javascriptfun.js';
-import { getISOWeek, startOfWeek, endOfWeek, format, addWeeks, subWeeks, addDays } from 'date-fns';
+import { getISOWeek, startOfWeek, endOfWeek, format, addWeeks, subWeeks, addDays, parse, getDay } from 'date-fns';
 
 import { Semestre } from '../semestre.js'
+import { Horaire } from '../horaire.js';
+import { Absence } from '../absence.js';
 
 @Component({
   selector: 'app-absence-page',
@@ -21,10 +23,13 @@ export class AbsencePageComponent {
   str_weekEndDate: string = "";
   days_fr: string[] = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"];
   formattedWeekDays: { dayName: string, date: string }[] = [];
-  heures: any[] = ["H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12"]
+  heures: any[] = ["H01", "H02", "H03", "H04", "H05", "H06", "H07", "H08", "H09", "H10", "H11", "H12"]
   change: boolean = false;
   email: string = "";
   semestres: Semestre[] = [];
+  horaires: Horaire[] = [];
+  heureContent: { [key: string]: string } = {};
+
 
   constructor(private http: HttpClient, private elementRef: ElementRef, private cookieService: CookieService, private renderer: Renderer2) {
     this.currentWeek = getISOWeek(this.today);
@@ -43,7 +48,7 @@ export class AbsencePageComponent {
   calculFormDays() {
     this.formattedWeekDays = [];
     for (let i = 0; i < 5; i++) {
-      const day = addWeeks(this.weekStartDate, this.currentWeek);
+      const day = addWeeks(this.weekStartDate, 0);
       const formatDate = format(addDays(day, i), 'dd.MM');
       this.formattedWeekDays.push({ dayName: this.days_fr[i], date: formatDate });
     }
@@ -80,6 +85,8 @@ export class AbsencePageComponent {
       window.location.href = "/login";
     }
     this.getSemestreEleve();
+    this.getCoursEleve();
+    this.getAbsencesEleve();
   }
 
   getSemestreEleve() {
@@ -93,7 +100,6 @@ export class AbsencePageComponent {
       });
 
     setTimeout(() => {
-      console.log(this.semestres);
       this.semestres.forEach(s => {
         if (s.numSemestre === sem) {
           this.elementRef.nativeElement.querySelector('#datedeb_input').value = s.dateDebut;
@@ -159,12 +165,65 @@ export class AbsencePageComponent {
         withCredentials: true
       };
 
-      this.http.post(url, data, options)
-        .subscribe(response => {
-
-        });
-
+      this.http.post(url, data, options).subscribe;
     }
+  }
 
+  inputAbsence(detail: string) {
+    let sem = this.elementRef.nativeElement.querySelector('#semestre').value;
+    const url = 'http://127.0.0.1:8000/edit_absence/';
+    const data = {
+      semestre: sem,
+      semaine: this.currentWeek,
+      eleve: this.email,
+      details: detail
+    };
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      withCredentials: true
+    };
+    this.http.post(url, data, options).subscribe(data => {
+    });
+  }
+
+  getCoursEleve() {
+    let sem = this.elementRef.nativeElement.querySelector('#semestre').value;
+    const url = 'http://127.0.0.1:8000/api/horaires/';
+    const params = new HttpParams().set('search', sem).set('user', this.email);
+    const options = { params: params, withCredentials: true };
+    this.http.get<Horaire[]>(url, options)
+      .subscribe(data => {
+        this.horaires = data;
+      });
+    setTimeout(() => {
+      this.horaires.forEach(item => {
+        const codeCours = item.codeCours;
+        const jourBackend = item.codeHoraire.slice(0, 3);
+        const heureBackend = item.codeHoraire.slice(3);
+
+        this.formattedWeekDays.forEach(day => {
+          this.heures.forEach(heure => {
+            const key = `${day.dayName}_${heure}`;
+            if (jourBackend === day.dayName.toLowerCase().slice(0, 3) && heureBackend === heure.slice(1)) {
+              this.heureContent[key] = codeCours;
+            }
+          });
+        });
+      });
+    }, 1000);
+    console.log(this.heureContent)
+  }
+
+  getAbsencesEleve() {
+    let sem = this.elementRef.nativeElement.querySelector('#semestre').value;
+    const url = 'http://127.0.0.1:8000/api/absences/';
+    const params = new HttpParams().set('semestre', sem).set('user', this.email);
+    const options = { params: params, withCredentials: true };
+    this.http.get<Absence[]>(url, options)
+      .subscribe(data => {
+        setTimeout(() => {
+          console.log(data)
+        }, 1000);
+      });
   }
 }

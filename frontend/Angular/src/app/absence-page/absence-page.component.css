@@ -1,63 +1,163 @@
-#conf_semestre {
-    padding: 0.5em 0 0.5em 0;
-    background-color: white;
-    text-align: center;
-    font-size: x-large;
+/* Styles pour les écrans d'ordinateur */
+@media screen and (min-width: 768px) {
+    #conf_semestre {
+        padding: 0.5em 0 0.5em 0;
+        background-color: white;
+        text-align: center;
+        font-size: x-large;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    border-top: solid 3px darkslategray;
-    border-bottom: solid 3px darkslategray;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        border-top: solid 3px darkslategray;
+        border-bottom: solid 3px darkslategray;
+    }
+
+    #conf_semestre input,
+    #conf_semestre select {
+        background-color: white;
+        text-align: center;
+        font-size: x-large;
+        border: solid 1.5px lightskyblue;
+        margin: 0 2em 0 0;
+    }
+
+    #gest_absences {
+        height: 50em;
+        overflow: auto;
+    }
+
+    #nav {
+        height: 2.5em;
+        background-color: lightcyan;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #nav button {
+        font-size: large;
+        font-weight: bold;
+    }
+
+    h2 {
+        margin: 0.5em auto;
+        text-align: center;
+    }
+
+    .semaine {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        overflow-x: auto;
+
+        padding: 0 1em 0 1em;
+        margin: 0 1em 0 1em;
+        background-color: white;
+    }
+
+    .day_Lundi,
+    .day_Mardi,
+    .day_Mercredi,
+    .day_Jeudi,
+    .day_Vendredi {
+        width: 100%;
+    }
+
+    .heure {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+    }
+
+    .heure input {
+        height: 3em;
+    }
 }
 
-#conf_semestre input,
-#conf_semestre select {
-    background-color: white;
-    text-align: center;
-    font-size: x-large;
-    border: solid 1.5px lightskyblue;
-    margin: 0 2em 0 0;
-}
+/* Styles pour les écrans de téléphone portable */
+@media screen and (max-width: 767px) {
+    #conf_semestre {
+        padding: 0.5em 0 0.5em 0;
+        background-color: white;
+        text-align: center;
+        font-size: medium;
 
-#gest_absences {
-    height: 50em;
-}
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        border-top: solid 3px darkslategray;
+        border-bottom: solid 3px darkslategray;
+    }
 
-#nav {
-    height: 2.5em;
-    background-color: lightcyan;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
+    #conf_semestre input,
+    #conf_semestre select {
+        background-color: white;
+        text-align: center;
+        font-size: medium;
+        border: solid 1.5px lightskyblue;
+        margin: 0 2em 0 0;
+    }
 
-#nav button {
-    font-size: large;
-    font-weight: bold;
-}
+    #nav {
+        height: 2.5em;
+        background-color: lightcyan;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
 
-h2 {
-    margin: 0.5em auto;
-    text-align: center;
-}
+    #nav button {
+        font-size: medium;
+        font-weight: bold;
+    }
 
-.semaine {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
+    #gest_absences {
+        height: 36.5em;
+        overflow: auto;
+        background-color: lightgray;
+    }
 
-.heure {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-}
 
-.heure input {
-    height: 3em;
+    h2 {
+        margin: 0.5em auto;
+        text-align: center;
+        font-size: large;
+    }
+
+    .semaine {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 2em 0 2em;
+        margin: 0 2em 0 2em;
+        background-color: white;
+    }
+
+    .day_Lundi,
+    .day_Mardi,
+    .day_Mercredi,
+    .day_Jeudi,
+    .day_Vendredi {
+        width: 100%;
+    }
+
+    .heure {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+        border-bottom: solid black 1px;
+    }
+
+    .heure input {
+        height: 2em;
+    }
 }

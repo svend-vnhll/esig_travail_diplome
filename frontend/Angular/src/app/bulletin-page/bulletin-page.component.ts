@@ -84,9 +84,7 @@ export class BulletinPageComponent {
     };
 
     this.http.post(url, data, options)
-      .subscribe(response => {
-
-      });
+      .subscribe(response => { });
   }
 
   loadCours() {

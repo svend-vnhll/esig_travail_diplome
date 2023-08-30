@@ -7,18 +7,18 @@
         <div id="list_cours">
             <div id="header_cours">
                 <div>Nom</div>
-                <div>Code</div>
-                <div>Module</div>
-                <div>Semestre</div>
-                <div>Coef.</div>
+                <div style="width: 20em;">Code</div>
+                <div>Mod</div>
+                <div style="width: 20em;">Sem</div>
+                <div style="width: 20em;">Coef.</div>
                 <div>Actions</div>
             </div>
             <div *ngFor="let c of cours" class="div_cours">
                 <div id="nom{{ c.id }}">{{ c.nom }}</div>
-                <div id="code{{ c.id }}">{{ c.code }}</div>
+                <div id="code{{ c.id }}" style="width: 20em;">{{ c.code }}</div>
                 <div id="module{{ c.id }}">{{ c.module }}</div>
-                <div id="semestre{{ c.id }}">{{ c.semestre }}</div>
-                <div id="coefficient{{ c.id }}">{{ c.coefficient }}</div>
+                <div id="semestre{{ c.id }}" style="width: 20em;">{{ c.semestre }}</div>
+                <div id="coefficient{{ c.id }}" style="width: 20em;">{{ c.coefficient }}</div>
                 <div><button (click)="deleteCours(c.id)">SUPP</button><button (click)="editCours(c.id)">EDIT</button>
                 </div>
             </div>
@@ -59,7 +59,7 @@
             <div style="border-bottom: 5px solid azure; 
             font-weight: bolder; font-size: 130%; font-family: Verdana, Geneva, Tahoma, sans-serif; 
             height: auto; padding: 3px;">Ajouter une publication</div>
-            <form><br>
+            <form id="form_publication"><br>
                 <div><label>Titre : </label><input [(ngModel)]="titre_publi" name="titre_publi" type="text"
                         placeholder="Titre publication" required>
                     <select id="sel_tag">

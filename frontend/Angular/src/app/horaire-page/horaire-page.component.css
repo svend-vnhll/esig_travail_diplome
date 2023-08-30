@@ -81,6 +81,7 @@
 
 /* Styles pour les écrans de téléphone portable */
 @media screen and (max-width: 767px) {
+
     #title {
         text-align: center;
         font-size: x-large;
@@ -100,6 +101,7 @@
         align-items: stretch;
         margin: 1em 0 1em 0;
         font-size: x-small;
+        height: 53em;
     }
 
     #tete_lgn,
@@ -127,7 +129,7 @@
     #mercredi div,
     #jeudi div,
     #vendredi div {
-        height: 3em;
+        height: 3.8em;
         width: 100%;
         border: solid black 1px;
         text-align: center;

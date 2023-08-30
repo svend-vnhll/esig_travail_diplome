@@ -9,7 +9,8 @@ from rest_framework import generics
 from decimal import Decimal
 
 from .models import *
-from .serializers import CoursSerializer, PublicationSerializer, HorairesSerializer, NotesSerializer, SemestreSerializer
+from .serializers import CoursSerializer, PublicationSerializer, HorairesSerializer, NotesSerializer, \
+    SemestreSerializer, AbsenceSerializer
 
 
 class CoursList(generics.ListAPIView):
@@ -72,6 +73,16 @@ class SemestreList(generics.ListAPIView):
     def get_queryset(self):
         email = self.request.GET.get('user')
         queryset = Semestre.objects.filter(utilisateur__email__exact=email)
+        return queryset
+
+
+class AbsencesList(generics.ListAPIView):
+    serializer_class = AbsenceSerializer
+
+    def get_queryset(self):
+        email = self.request.GET.get('user')
+        semestre = self.request.GET.get('semestre')
+        queryset = Absence.objects.filter(utilisateur__email__exact=email, semestre__numSemestre__exact=semestre)
         return queryset
 
 
@@ -257,7 +268,7 @@ def change_bulletin(request):
 
         for key, value in notes.items():
             cours = key[:4]
-            er = int(re.search(r'ER(\d)', key).group(1))  # Extraction du numéro ER
+            er = int(re.search(r'ER(\d)', key).group(1))
             type_value = key[-4:]
 
             if not Note.objects.filter(epreuves__exact=er, utilisateur__email__exact=eleve.email, cours__code=cours).exists():
@@ -331,4 +342,45 @@ def change_latest(request):
             else:
                 s.latest = False
                 s.save()
+    return HttpResponse()
+
+
+def edit_absence(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        semaine = data.get('semaine')
+        semestre = data.get('semestre')
+        eleve = Utilisateur.objects.get(email__exact=data.get('eleve'))
+        detail = data.get('details')
+
+        parts = detail.split('_')
+        jour = parts[0]
+        date = parts[1]
+        cours = parts[2]
+        status = parts[3]
+
+        if Absence.objects.filter(semestre__exact=semestre, utilisateur__email__exact=eleve.email, horaire__exact=cours, dateAbs__exact=date).exists():
+            a = Absence.objects.get(semestre__exact=semestre, utilisateur__email__exact=eleve.email, horaire__exact=cours, dateAbs__exact=date)
+            if status == "pres":
+                a.delete()
+            else:
+                a.dateAbs = date
+                a.semestre = Semestre.objects.get(numSemestre__exact=semestre, utilisateur__email__exact=eleve.email)
+                a.semaine = semaine
+                a.jour = jour
+                a.horaire = cours
+                a.type = status
+                a.utilisateur = eleve
+                a.save()
+        else:
+            a = Absence()
+            a.dateAbs = date
+            a.semestre = Semestre.objects.get(numSemestre__exact=semestre, utilisateur__email__exact=eleve.email)
+            a.semaine = semaine
+            a.jour = jour
+            a.horaire = cours
+            a.type = status
+            a.utilisateur = eleve
+            a.save()
+
     return HttpResponse()
