@@ -77,6 +77,19 @@
     .heure input {
         height: 3em;
     }
+
+    table {
+        width: 100%;
+        background-color: gainsboro;
+        border-bottom: solid darkslategray 5px;
+        text-align: center;
+    }
+
+    table span {
+        font-weight: bold;
+    }
+
+
 }
 
 /* Styles pour les écrans de téléphone portable */
@@ -159,5 +172,23 @@
 
     .heure input {
         height: 2em;
+    }
+
+    table {
+        width: 100%;
+        background-color: gainsboro;
+        border-bottom: solid darkslategray 5px;
+        text-align: center;
+    }
+
+    table span {
+        font-weight: bold;
+    }
+
+    table tr {
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        align-items: center;
     }
 }

@@ -12,9 +12,24 @@
         src="../assets/img/saved.png" alt="profile_icon">
 </div>
 <div id="gest_absences">
-    <div id="etat_absences">
-        Etat des absences du Semestre
-    </div>
+    <table id="etat_absences">
+        <tr>
+            <td colspan="2" style="background-color: gainsboro;"><span style="font-size: large; font-weight: bold;">Etat
+                    des absences du Semestre :</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Total d'heures de cours dans le Semestre : <span>{{stats["total_heures"]}}</span><br></td>
+            <td>Total d'absences : <span>{{stats["absences"]}}</span><br></td>
+        </tr>
+        <tr>
+            <td>Absences non-excusées : <span>{{stats["abs_nexc"]}}</span></td>
+            <td>Absences excusées : <span>{{stats["abs_exc"]}}</span></td>
+        </tr>
+        <tr>
+            <td colspan="2">Pourcentage d'absentéisme au semestre : <span>{{stats["pourcentage"]}} %</span></td>
+        </tr>
+    </table>
 
     <div id="nav">
         <button (click)="navPrevWeek()">Semaine préc.</button>
@@ -32,7 +47,8 @@
 
                 <div class="heure">
                     <span style="margin-right: 0.5em;">{{ heure }}</span>
-                    <span [attr.class]="(day.dayName) + '_' + (heure)" style="margin-right: 0.5em;"> COURS </span>
+                    <span [attr.class]="(day.dayName) + '_' + (heure)" style="margin-right: 0.5em;"> {{
+                        heureContent[day.dayName + '_' + heure] }} </span>
                     <input type="radio" class="present" name="{{ day.dayName + '_' + day.date + '_' + heure }}"
                         value="present" checked style="accent-color: lightgreen; margin-right: 1.5em;"
                         (click)="inputAbsence(day.dayName + '_' + day.date + '_' + heure + '_pres')">

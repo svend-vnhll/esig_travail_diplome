@@ -1,7 +1,7 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Publication } from '../publication.js'
+import { Publication } from '../interfaces/publication.js'
 import { toggleIfAdminTrue } from '../javascriptfun.js';
 
 

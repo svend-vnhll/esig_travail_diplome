@@ -1,7 +1,8 @@
 import decimal
 import json
 import re
-from datetime import date
+from datetime import date, datetime
+
 from django.contrib.auth.hashers import make_password, check_password
 
 from django.http import JsonResponse, HttpResponse
@@ -310,6 +311,7 @@ def change_bulletin(request):
 
 def save_semestre(request):
     if request.method == 'POST':
+        print("IN")
         data = json.loads(request.body)
         semestre = data.get('semestre')
         eleve = Utilisateur.objects.get(email__exact=data.get('eleve'))
@@ -384,3 +386,33 @@ def edit_absence(request):
             a.save()
 
     return HttpResponse()
+
+
+def get_stats_absences(request):
+    data = {}
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        email = data.get('email')
+        semestre = data.get('semestre')
+        if Semestre.objects.filter(numSemestre__exact=semestre, utilisateur__email__exact=email).exists():
+            sem = Semestre.objects.get(numSemestre__exact=semestre, utilisateur__email__exact=email)
+            cours = CoursEleve.objects.filter(utilisateur__email__exact=email, semestre__exact=semestre)
+            absences = Absence.objects.filter(utilisateur__email__exact=email, semestre__numSemestre__exact=semestre)
+
+            date_debut = datetime.strptime(sem.dateDebut, "%Y-%m-%d")
+            date_fin = datetime.strptime(sem.dateFin, "%Y-%m-%d")
+            difference = date_fin - date_debut
+            nombre_de_semaines = difference.days // 7
+
+            total_heures = cours.count() * nombre_de_semaines
+            pourcentage = round((absences.count() / total_heures) * 100, 2)
+
+            data = {
+                "total_heures": total_heures,
+                "absences": absences.count(),
+                "abs_nexc": Absence.objects.filter(type__exact='nexc').count(),
+                "abs_exc": Absence.objects.filter(type__exact='exc').count(),
+                "pourcentage": pourcentage
+            }
+    return JsonResponse(data)
+

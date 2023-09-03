@@ -20,4 +20,5 @@ urlpatterns = [
     path('save_semestre/', views.save_semestre),
     path('change_latest/', views.change_latest),
     path('edit_absence/', views.edit_absence),
+    path('get_stats_absences/', views.get_stats_absences),
 ]

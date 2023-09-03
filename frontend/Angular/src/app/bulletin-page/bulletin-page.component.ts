@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { LoopLoadingBulletin } from '../javascriptfun.js';
 
-import { Cours } from '../cours.js'
-import { Horaire } from '../horaire.js'
-import { Note } from '../note.js'
+import { Cours } from '../interfaces/cours.js'
+import { Horaire } from '../interfaces/horaire.js'
+import { Note } from '../interfaces/note.js'
 
 @Component({
   selector: 'app-bulletin-page',

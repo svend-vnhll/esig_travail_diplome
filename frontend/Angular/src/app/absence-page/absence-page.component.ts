@@ -4,9 +4,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoopLoadingBulletin } from '../javascriptfun.js';
 import { getISOWeek, startOfWeek, endOfWeek, format, addWeeks, subWeeks, addDays, parse, getDay } from 'date-fns';
 
-import { Semestre } from '../semestre.js'
-import { Horaire } from '../horaire.js';
-import { Absence } from '../absence.js';
+import { Semestre } from '../interfaces/semestre.js'
+import { Horaire } from '../interfaces/horaire.js';
+import { Absence } from '../interfaces/absence.js';
+import { he } from 'date-fns/locale';
 
 @Component({
   selector: 'app-absence-page',
@@ -28,7 +29,9 @@ export class AbsencePageComponent {
   email: string = "";
   semestres: Semestre[] = [];
   horaires: Horaire[] = [];
+  absences: Absence[] = [];
   heureContent: { [key: string]: string } = {};
+  stats: { [key: string]: string } = {};
 
 
   constructor(private http: HttpClient, private elementRef: ElementRef, private cookieService: CookieService, private renderer: Renderer2) {
@@ -59,6 +62,7 @@ export class AbsencePageComponent {
     this.currentWeek = this.currentWeek - 1;
     this.calculWeekDates();
     this.calculFormDays();
+    this.ngOnInit();
   }
 
   navNextWeek() {
@@ -66,6 +70,7 @@ export class AbsencePageComponent {
     this.currentWeek = this.currentWeek + 1;
     this.calculWeekDates();
     this.calculFormDays();
+    this.ngOnInit();
   }
 
   navCurrentWeek() {
@@ -73,6 +78,7 @@ export class AbsencePageComponent {
     this.currentWeek = getISOWeek(this.today);
     this.calculWeekDates();
     this.calculFormDays();
+    this.ngOnInit();
   }
 
   formatDate(date: Date): string {
@@ -87,6 +93,11 @@ export class AbsencePageComponent {
     this.getSemestreEleve();
     this.getCoursEleve();
     this.getAbsencesEleve();
+    setTimeout(() => {
+      this.setAbsencesEleve();
+    }, 1000);
+    this.setStats();
+
   }
 
   getSemestreEleve() {
@@ -211,7 +222,6 @@ export class AbsencePageComponent {
         });
       });
     }, 1000);
-    console.log(this.heureContent)
   }
 
   getAbsencesEleve() {
@@ -221,9 +231,48 @@ export class AbsencePageComponent {
     const options = { params: params, withCredentials: true };
     this.http.get<Absence[]>(url, options)
       .subscribe(data => {
-        setTimeout(() => {
-          console.log(data)
-        }, 1000);
+        this.absences = data;
+      });
+  }
+
+  setAbsencesEleve() {
+    let nbabs = 0;
+    this.horaires.forEach(item => {
+      this.formattedWeekDays.forEach(day => {
+        this.heures.forEach(heure => {
+          this.absences.forEach(absence => {
+            if (absence.dateAbs === day.date && heure === absence.horaire) {
+              let inputname = day.dayName + "_" + day.date + "_" + heure;
+              this.elementRef.nativeElement.querySelector(`input[name="${inputname}"][value="abs_${absence.type}"]`).checked = true;
+              nbabs++;
+            }
+          })
+        });
+      });
+    });
+  }
+
+  setStats() {
+    const url = 'http://127.0.0.1:8000/get_stats_absences/';
+    const data = {
+      email: this.email,
+      semestre: this.elementRef.nativeElement.querySelector('#semestre').value
+    };
+    const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true };
+
+    this.http.post(url, data, options)
+      .subscribe((response: any) => {
+        const total_heures = response.total_heures;
+        const absences = response.absences;
+        const abs_nexc = response.abs_nexc;
+        const abs_exc = response.abs_exc;
+        const pourcentage = response.pourcentage;
+
+        this.stats["total_heures"] = total_heures;
+        this.stats["absences"] = absences;
+        this.stats["abs_nexc"] = abs_nexc;
+        this.stats["abs_exc"] = abs_exc;
+        this.stats["pourcentage"] = pourcentage;
       });
   }
 }

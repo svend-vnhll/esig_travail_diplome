@@ -2,7 +2,6 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { showErrorMessage } from '../javascriptfun.js';
 import { showInfoMessage } from '../javascriptfun.js';
-import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 interface TryLoginResponse {
@@ -20,7 +19,7 @@ export class LoginPageComponent {
   email: string = '';
   password: String = '';
 
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService, private elementRef: ElementRef, private renderer: Renderer2) { }
+  constructor(private http: HttpClient, private cookieService: CookieService, private elementRef: ElementRef, private renderer: Renderer2) { }
 
   public closeError() {
     showErrorMessage("");

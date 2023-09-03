@@ -7,7 +7,7 @@ import { ShowPubliPanel } from '../javascriptfun.js';
 import { showErrorMessage } from '../javascriptfun.js';
 import { showInfoMessage } from '../javascriptfun.js';
 import { ClearInputs } from '../javascriptfun.js';
-import { Cours } from '../cours.js'
+import { Cours } from '../interfaces/cours.js'
 
 interface CheckInputs {
   response: String;
